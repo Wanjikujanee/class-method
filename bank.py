@@ -1,28 +1,41 @@
-from curses import def_prog_mode
-
-
 class Account:
-      def __init__(self,name,balance,number,deposit,withdraw):
+      def __init__(self,name,acc_number,):
+                 self.balance = 0
                  self.name = name
-                 self.balance = balance
-                 self.deposit = deposit
-                 self.number = number
-                 self.withdraw = withdraw
-                
+                 self.acc_number=acc_number
+                 self.deposits=[]
+                 self.withdrawal=[]
+                 
+                 
+                 
               
 
-      def deposit(self,deposit):
-             self.deposit=int(input("You  have deposited:"))
-             self.balance+=self.deposit
-             return f"Your new deposit  is {self.deposit}"
-
-
-      def withdraw(self,withdraw):
-        self.withdraw= int(input("You  have withdrawn:")) 
-      if balance>=withdraw:
-            balance-withdraw
-            print("You have withdrawn:" ,withdraw)
-      else:
-             print("You have insufficient funds")
-      def balance(self):
-         print("Your current balance is :" , self.balance)
+      def deposit(self,amount):
+             if amount<=0:
+                    return f"Deposit amount should be more than zero"
+             self.balance+=amount
+             self.deposit.append(amount)
+             return f"You have deposited {amount} .Your new balance is {self.balance}",self.deposit
+      
+                 
+      def deposit_statement(self):
+                    print(*self.deposit,sep="/n")
+      
+      def withdraw(self,amount):
+             if amount>self.balance:
+                    return f"Your balance is {self.balance} .You cannot withdraw the {amount}"
+             elif amount<=0:
+                    return f"Amount must e greater than zero"
+             else:
+                    self.balance==amount
+                    self.withdraw.append(amount)
+                    return f"You have withdrawn {amount}  your balance is {self.balance}",self.withdraw
+             
+      def withdraw_statement(self):
+                    print(*self.withdraw,sep="/n")
+             
+             
+             
+             
+             
+           
